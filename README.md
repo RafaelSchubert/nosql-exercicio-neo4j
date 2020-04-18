@@ -12,3 +12,11 @@ MATCH (vertice:Person) RETURN vertice;
 
 • Exercise 1.4: Retrieve all Movie nodes.
 MATCH (vertice:Movie) RETURN vertice;
+
+
+• Exercise 2.1: Retrieve all movies that were released in a specific year.
+• Exercise 2.2: View the retrieved results as a table.
+• Exercise 2.3: Query the database for all property keys.
+• Exercise 2.4: Retrieve all Movies released in a specific year, returning their titles.
+• Exercise 2.5: Display title, released, and tagline values for every Movie node in the graph.
+• Exercise 2.6: Display more user-friendly headers in the table
