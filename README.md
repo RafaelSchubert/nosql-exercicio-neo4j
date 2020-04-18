@@ -49,13 +49,19 @@ Por exemplo:
 -----
 
 • Exercise 3.1: Display the schema of the database.
+Idem ao Exercício 1.2:
+> CALL db.schema.visualization();
 
 • Exercise 3.2: Retrieve all people who wrote the movie Speed Racer.
+> MATCH (autor:Person)-[:WROTE]->(:Movie {title: "Speed Racer"}) RETURN autor.name;
 
 • Exercise 3.3: Retrieve all movies that are connected to the person, Tom Hanks.
+> MATCH (:Person {name: "Tom Hanks"})--(filme:Movie) RETURN filme;
 
 • Exercise 3.4: Retrieve information about the relationships Tom Hanks had with the set of movies retrieved earlier.
+> MATCH (:Person {name: "Tom Hanks"})-[relacao]-(filme:Movie) RETURN filme.title AS Titulo, type(relacao) AS Relacao;
 
 • Exercise 3.5: Retrieve information about the roles that Tom Hanks acted in.
+> MATCH (:Person {name: "Tom Hanks"})-[atuacao:ACTED_IN]-(filme:Movie) RETURN filme.title AS Filme, atuacao.roles AS Papeis;
 
 -----
