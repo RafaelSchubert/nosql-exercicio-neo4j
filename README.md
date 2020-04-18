@@ -67,29 +67,68 @@ Idem ao Exercício 1.2:
 -----
 
 • Exercise 4.1: Retrieve all movies that Tom Cruise acted in.
+> MATCH (filme)
+  WHERE (filme:Movie)<-[:ACTED_IN]-(:Person {name: "Tom Cruise"})
+  RETURN filme.title AS Filme;
 
 • Exercise 4.2: Retrieve all people that were born in the 70’s.
+> MATCH (pessoa:Person)
+  WHERE 1970 <= pessoa.born AND pessoa.born < 1980
+  RETURN pessoa.name AS Nome, pessoa.born AS Nascimento;
 
 • Exercise 4.3: Retrieve the actors who acted in the movie The Matrix who were born after 1960.
+> MATCH (ator)
+  WHERE (ator:Person)-[:ACTED_IN]->(:Movie {title: "The Matrix"})
+        AND 1960 < ator.born
+  RETURN ator.name AS Ator, ator.born AS Nascimento;
 
 • Exercise 4.4: Retrieve all movies by testing the node label and a property.
+> MATCH (filme)
+  WHERE filme:Movie AND exists(filme.title)
+  RETURN filme;
 
 • Exercise 4.5: Retrieve all people that wrote movies by testing the relationship between two nodes.
+> MATCH (autor)
+  WHERE (autor:Person)-[:WROTE]->(:Movie)
+  RETURN autor.name AS Autor;
 
 • Exercise 4.6: Retrieve all people in the graph that do not have a property.
+> MATCH (pessoa:Person)
+  WHERE NOT exists(pessoa.rating)
+  RETURN pessoa.name AS Nome;
 
 • Exercise 4.7: Retrieve all people related to movies where the relationship has a property.
+> MATCH (pessoa:Person)-[relacao]->(filme:Movie)
+  WHERE exists(relacao.roles)
+  RETURN pessoa.name AS Ator, filme.title AS Filme, relacao.roles AS Papeis;
 
 • Exercise 4.8: Retrieve all actors whose name begins with James.
+> MATCH (ator:Person)
+  WHERE ator.name STARTS WITH "James"
+  RETURN ator.name AS Ator;
 
 • Exercise 4.9: Retrieve all all REVIEW relationships from the graph with filtered results.
+> MATCH (revisor:Person)-[revisao:REVIEWED]->(filme:Movie)
+  WHERE 70 <= revisao.rating
+  RETURN revisor.name AS Revisor, filme.title AS Filme, revisao.rating AS Nota;
 
 • Exercise 4.10: Retrieve all people who have produced a movie, but have not directed a movie.
+> MATCH (produtor:Person)
+  WHERE (produtor)-[:PRODUCED]->(:Movie)
+        AND NOT (produtor)-[:DIRECTED]->(:Movie)
+  RETURN produtor.name AS Produtor;
 
 • Exercise 4.11: Retrieve the movies and their actors where one of the actors also directed the movie.
+> MATCH (ator:Person)-[:ACTED_IN]->(filme:Movie)
+  WHERE exists((filme)<-[:DIRECTED]-(:Person)-[:ACTED_IN]->(filme))
+  RETURN filme.title AS Filme, ator.name AS Ator;
 
 • Exercise 4.12: Retrieve all movies that were released in a set of years.
+> MATCH (filme:Movie)
+  WHERE filme.released IN [1960, 1970, 1980, 1990, 2000]
+  RETURN filme.title AS Filme, filme.released AS Lancamento;
 
 • Exercise 4.13: Retrieve the movies that have an actor’s role that is the name of the movie.
+> MATCH 
 
 -----
