@@ -7,7 +7,8 @@ Exercícios de Neo4j da disciplina de Bancos de Dados Não-Relacionais do curso 
 > MATCH (vertice) RETURN vertice;
 
 • Exercise 1.2: Examine the data model for the graph.
-
+> CALL db.schema.visualization();
+Nota: o material de consulta menciona como "CALL db.schema;". No entanto, isso mudou.
 
 • Exercise 1.3: Retrieve all Person nodes.
 > MATCH (vertice:Person) RETURN vertice;
