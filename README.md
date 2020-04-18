@@ -65,3 +65,31 @@ Idem ao Exercício 1.2:
 > MATCH (:Person {name: "Tom Hanks"})-[atuacao:ACTED_IN]-(filme:Movie) RETURN filme.title AS Filme, atuacao.roles AS Papeis;
 
 -----
+
+• Exercise 4.1: Retrieve all movies that Tom Cruise acted in.
+
+• Exercise 4.2: Retrieve all people that were born in the 70’s.
+
+• Exercise 4.3: Retrieve the actors who acted in the movie The Matrix who were born after 1960.
+
+• Exercise 4.4: Retrieve all movies by testing the node label and a property.
+
+• Exercise 4.5: Retrieve all people that wrote movies by testing the relationship between two nodes.
+
+• Exercise 4.6: Retrieve all people in the graph that do not have a property.
+
+• Exercise 4.7: Retrieve all people related to movies where the relationship has a property.
+
+• Exercise 4.8: Retrieve all actors whose name begins with James.
+
+• Exercise 4.9: Retrieve all all REVIEW relationships from the graph with filtered results.
+
+• Exercise 4.10: Retrieve all people who have produced a movie, but have not directed a movie.
+
+• Exercise 4.11: Retrieve the movies and their actors where one of the actors also directed the movie.
+
+• Exercise 4.12: Retrieve all movies that were released in a set of years.
+
+• Exercise 4.13: Retrieve the movies that have an actor’s role that is the name of the movie.
+
+-----
