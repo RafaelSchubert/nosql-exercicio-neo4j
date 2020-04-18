@@ -43,3 +43,15 @@ Por exemplo:
 > MATCH (filme:Movie) RETURN filme.title AS Titulo, filme.released AS Lancamento, filme.tagline AS Slogan;
 
 -----
+
+• Exercise 3.1: Display the schema of the database.
+
+• Exercise 3.2: Retrieve all people who wrote the movie Speed Racer.
+
+• Exercise 3.3: Retrieve all movies that are connected to the person, Tom Hanks.
+
+• Exercise 3.4: Retrieve information about the relationships Tom Hanks had with the set of movies retrieved earlier.
+
+• Exercise 3.5: Retrieve information about the roles that Tom Hanks acted in.
+
+-----
