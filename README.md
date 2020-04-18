@@ -20,8 +20,12 @@ Nota: o material de consulta menciona como "CALL db.schema;". No entanto, isso m
 
 • Exercise 2.1: Retrieve all movies that were released in a specific year.
 > MATCH (filme:Movie) WHERE filme.released = <ano> RETURN filme;
+Ou:
+> MATCH (filme:Movie {released: <ano>}) RETURN filme;
 Por exemplo:
 > MATCH (filme:Movie) WHERE filme.released = 2000 RETURN filme;
+Ou:
+> MATCH (filme:Movie {released: 2000}) RETURN filme;
 
 • Exercise 2.2: View the retrieved results as a table.
 
@@ -32,9 +36,9 @@ Ou:
 > CALL db.propertyKeys();
 
 • Exercise 2.4: Retrieve all Movies released in a specific year, returning their titles.
-> MATCH (filme:Movie) WHERE filme.released = <ano> RETURN filme.title AS Titulo;
+> MATCH (filme:Movie {released: <ano>}) RETURN filme.title AS Titulo;
 Por exemplo:
-> MATCH (filme:Movie) WHERE filme.released = 1998 RETURN filme.title AS Titulo;
+> MATCH (filme:Movie {released: 1998}) RETURN filme.title AS Titulo;
 
 • Exercise 2.5: Display title, released, and tagline values for every Movie node in the graph.
 > MATCH (filme:Movie) RETURN filme.title, filme.released, filme.tagline;
