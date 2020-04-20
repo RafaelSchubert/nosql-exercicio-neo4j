@@ -124,3 +124,27 @@ Idem ao Exercício 1.2:
   RETURN filme;
 
 -----
+
+- Exercise 5.1: Retrieve data using multiple MATCH patterns.
+
+- Exercise 5.2: Retrieve particular nodes that have a relationship.
+
+- Exercise 5.3: Modify the query to retrieve nodes that are exactly three hops away.
+
+- Exercise 5.4: Modify the query to retrieve nodes that are one and two hops away.
+
+- Exercise 5.5: Modify the query to retrieve particular nodes that are connected no matter how many hops are required.
+
+- Exercise 5.6: Specify optional data to be retrieved during the query.
+
+- Exercise 5.7: Retrieve nodes by collecting a list.
+
+- Exercise 5.9: Retrieve nodes as lists and return data associated with the corresponding lists.
+
+- Exercise 5.10: Retrieve nodes and their relationships as lists.
+
+- Exercise 5.11: Retrieve the actors who have acted in exactly five movies.
+
+- Exercise 5.12: Retrieve the movies that have at least 2 directors with other optional data.
+
+-----
