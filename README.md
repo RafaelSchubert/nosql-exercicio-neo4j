@@ -119,6 +119,8 @@ Idem ao Exercício 1.2:
   RETURN filme.title AS Filme, filme.released AS Lancamento;
 
 - Exercise 4.13: Retrieve the movies that have an actor’s role that is the name of the movie.
-> MATCH 
+> MATCH (filme:Movie)<-[atuacao:ACTED_IN]->(:Person)
+  WHERE filme.title IN atuacao.roles
+  RETURN filme;
 
 -----
