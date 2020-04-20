@@ -126,25 +126,53 @@ Idem ao Exercício 1.2:
 -----
 
 - Exercise 5.1: Retrieve data using multiple MATCH patterns.
+> MATCH (:Person {name: "Laurence Fishburne"})-[:ACTED_IN]->(filme:Movie),
+        (ator:Person)-[:ACTED_IN]->(filme:Movie)
+  RETURN filme, ator;
 
 - Exercise 5.2: Retrieve particular nodes that have a relationship.
+> MATCH (a:Person)--(b:Person) RETURN a, b;
 
 - Exercise 5.3: Modify the query to retrieve nodes that are exactly three hops away.
+> MATCH (a:Person)-[*3]-(b:Person) RETURN a, b;
 
 - Exercise 5.4: Modify the query to retrieve nodes that are one and two hops away.
+> MATCH (a:Person)-[*1..2]-(b:Person) RETURN a, b;
 
 - Exercise 5.5: Modify the query to retrieve particular nodes that are connected no matter how many hops are required.
+> MATCH (a:Person)-[*]-(b:Person) RETURN a, b;
 
 - Exercise 5.6: Specify optional data to be retrieved during the query.
+> MATCH (ator:Person)
+  WHERE (ator:Person)-[:ACTED_IN]->(:Movie)
+        AND ator.born < 1980
+  OPTIONAL MATCH (ator:Person)-[:ACTED_IN]->(filme:Movie)<-[:ACTED_IN]-(:Person {name: "Al Pacino"})
+  RETURN ator.name, ator.born, filme.title, filme.released;
 
 - Exercise 5.7: Retrieve nodes by collecting a list.
+> MATCH (diretor:Person)-[:DIRECTED]->(:Movie)
+  RETURN collect(diretor.name) AS Diretores;
 
 - Exercise 5.9: Retrieve nodes as lists and return data associated with the corresponding lists.
+> MATCH (filme:Movie)
+  WHERE 1980 <= filme.released AND filme.released < 1990
+  RETURN count(*) AS `Filmes da Década de 80`, collect(filme.title) AS Filmes;
 
 - Exercise 5.10: Retrieve nodes and their relationships as lists.
+> MATCH (vertice)-[relacao]-(outro)
+  RETURN vertice AS Vértice, collect(type(relacao)) AS Relações, collect(outro) AS Com;
 
 - Exercise 5.11: Retrieve the actors who have acted in exactly five movies.
+> MATCH (ator:Person)-[:ACTED_IN]->(filme:Movie)
+  WITH ator, count(ator) AS qtdFilmes, collect(filme.title) AS filmesAtuados
+  WHERE qtdFilmes = 5
+  RETURN ator.name AS Ator, filmesAtuados AS Filmes;
 
 - Exercise 5.12: Retrieve the movies that have at least 2 directors with other optional data.
+> MATCH (filme:Movie)<-[:DIRECTED]-(diretor:Person)
+  WITH filme, count(filme) AS qtdDiretores, collect(diretor.name) AS diretores
+  WHERE qtdDiretores >= 2
+  OPTIONAL MATCH (filme)<-[:REVIEWED]-(revisor:Person)
+  RETURN filme.title AS Filme, diretores AS Diretores, collect(revisor.name) AS Revisores;
 
 -----
