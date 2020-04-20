@@ -176,3 +176,17 @@ Idem ao Exercício 1.2:
   RETURN filme.title AS Filme, diretores AS Diretores, collect(revisor.name) AS Revisores;
 
 -----
+
+- Exercise 6.1: Execute a query that returns duplicate records.
+
+- Exercise 6.2: Modify the query to eliminate duplication.
+
+- Exercise 6.3: Modify the query to eliminate more duplication.
+
+- Exercise 6.4: Sort results returned.
+
+- Exercise 6.5: Retrieve the top 5 ratings and their associated movies.
+
+- Exercise 6.6: Retrieve all actors that have not appeared in more than 3 movies.
+
+-----
