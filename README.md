@@ -178,15 +178,32 @@ Idem ao Exercício 1.2:
 -----
 
 - Exercise 6.1: Execute a query that returns duplicate records.
+> MATCH (p:Person)-[:DIRECTED|:PRODUCED]->(f:Movie)
+  RETURN p.name, f.title;
 
 - Exercise 6.2: Modify the query to eliminate duplication.
+> MATCH (p:Person)-[:DIRECTED|:PRODUCED]->(f:Movie)
+  RETURN DISTINCT p.name, f.title;
 
 - Exercise 6.3: Modify the query to eliminate more duplication.
+Este exercício por acaso esperava que eu tivesse feito uma query **muito** específica no exercício 6.1?
 
 - Exercise 6.4: Sort results returned.
+> MATCH (p:Person)-[:DIRECTED|:PRODUCED]->(f:Movie)
+  RETURN DISTINCT p.name, f.title
+  ORDER BY p.name, f.title;
 
 - Exercise 6.5: Retrieve the top 5 ratings and their associated movies.
+> MATCH (filme:Movie)<-[revisao:REVIEWED]-(revisor:Person)
+  RETURN filme.title AS Filme, revisor.name AS Revisor, revisao.rating AS Nota
+  ORDER BY Nota DESC
+  LIMIT 5;
 
 - Exercise 6.6: Retrieve all actors that have not appeared in more than 3 movies.
+> MATCH (ator:Person)-[:ACTED_IN]->(filme:Movie)
+  WITH ator, count(ator) AS qtdFilmes, collect(filme.title) AS filmes
+  WHERE qtdFilmes <= 3
+  RETURN ator.name AS Ator, filmes AS Filmes
+  ORDER BY Ator;
 
 -----
