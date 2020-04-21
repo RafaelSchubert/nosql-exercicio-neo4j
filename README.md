@@ -207,3 +207,13 @@ Este exercício por acaso esperava que eu tivesse feito uma query **muito** espe
   ORDER BY Ator;
 
 -----
+
+- Exercise 7.1: Collect and use lists.
+
+- Exercise 7.2: Collect a list.
+
+- Exercise 7.3: Unwind a list.
+
+- Exercise 7.4: Perform a calculation with the date type.
+
+-----
