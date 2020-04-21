@@ -209,11 +209,31 @@ Este exercício por acaso esperava que eu tivesse feito uma query **muito** espe
 -----
 
 - Exercise 7.1: Collect and use lists.
+> MATCH (ator:Person)-[:ACTED_IN]->(filme:Movie)<-[:ACTED_IN]-(atorMatrix:Person)
+  WHERE NOT (ator)-[:ACTED_IN]->(:Movie {title: "The Matrix"})
+        AND (atorMatrix)-[:ACTED_IN]->(:Movie {title: "The Matrix"})
+  WITH filme, collect(DISTINCT atorMatrix.name) AS elencoMatrix, collect(DISTINCT ator.name) AS elenco
+  RETURN filme.title AS Filme, elencoMatrix AS `Elenco Matrix`, elenco AS Elenco
+  ORDER BY Filme;
 
 - Exercise 7.2: Collect a list.
+> MATCH (filme:Movie)
+  WITH filme.released AS ano, collect(filme.title) AS filmes
+  RETURN ano AS Ano, filmes AS Lançamentos
+  ORDER BY Ano DESC;
 
 - Exercise 7.3: Unwind a list.
+> MATCH (filme:Movie)
+  WITH filme.released AS ano, collect(filme.title) AS filmes
+  ORDER BY ano DESC
+  UNWIND filmes AS filme
+  RETURN ano AS Ano, filme AS Filme;
 
 - Exercise 7.4: Perform a calculation with the date type.
+> MATCH (diretor:Person)-[:DIRECTED]->(filme:Movie)
+  WHERE exists(diretor.born)
+  WITH diretor, date().year - diretor.born AS idade, collect(filme.title) AS filmes
+  ORDER BY size(filmes) DESC, idade DESC, diretor.name
+  RETURN diretor.name AS Diretor, idade AS Idade, filmes AS Dirigiu;
 
 -----
