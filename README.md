@@ -238,40 +238,84 @@ Este exercício por acaso esperava que eu tivesse feito uma query **muito** espe
 
 -----
 
-• Exercise 8.1: Create a Movie node.
+- Exercise 8.1: Create a Movie node.
+> CREATE (:Movie {title: "Avatar", tagline: "Enter the world", released: 2009});
 
-• Exercise 8.2: Retrieve the newly-created node.
+- Exercise 8.2: Retrieve the newly-created node.
+> MATCH (filme:Movie {title: "Avatar"}) RETURN filme;
 
-• Exercise 8.3: Create a Person node.
+- Exercise 8.3: Create a Person node.
+> CREATE (:Person {name: "James Cameron", born: 1954});
 
-• Exercise 8.4: Retrieve the newly-created node.
+- Exercise 8.4: Retrieve the newly-created node.
+> MATCH (diretor:Person {name: "James Cameron"}) RETURN diretor;
 
-• Exercise 8.5: Add a label to a node.
+- Exercise 8.5: Add a label to a node.
+> MATCH (cameron:Person {name: "James Cameron"})
+  SET cameron:Director
+  RETURN labels(cameron);
 
-• Exercise 8.6: Retrieve the node using the new label.
+- Exercise 8.6: Retrieve the node using the new label.
+> MATCH (diretor:Director) RETURN diretor;
 
-• Exercise 8.7: Add the Female label to selected nodes.
+- Exercise 8.7: Add the Female label to selected nodes.
+> MATCH (atriz:Person)-[:ACTED_IN]->(:Movie)
+  WHERE atriz.name IN [
+    "Bonnie Hunt",
+    "Carrie Fisher",
+    "Charlize Theron",
+    "Demi Moore",
+    "Halle Berry"
+  ]
+  SET atriz:Female
+  RETURN count(DISTINCT atriz);
 
-• Exercise 8.8: Retrieve all Female nodes.
+- Exercise 8.8: Retrieve all Female nodes.
+> MATCH (mulher:Female) RETURN mulher;
 
-• Exercise 8.9: Remove the Female label from the nodes that have this label.
+- Exercise 8.9: Remove the Female label from the nodes that have this label.
+> MATCH (mulher:Female)
+  REMOVE mulher:Female
+  RETURN count(mulher);
 
-• Exercise 8.10: View the current schema of the graph.
+- Exercise 8.10: View the current schema of the graph.
+> CALL db.schema.visualization;
 
-• Exercise 8.11: Add properties to a movie.
+- Exercise 8.11: Add properties to a movie.
+> MATCH (filme:Movie {title: "Avatar"})
+  SET filme += {runningTime: 60 * 2 + 42, genres: ["Sci fi", "Action"]}
+  RETURN filme;
 
-• Exercise 8.12: Retrieve an OlderMovie node to confirm the label and properties.
+- Exercise 8.12: Retrieve an OlderMovie node to confirm the label and properties.
+A label "OlderMovie" não foi incluída durante os exercícios, mas bastaria especificá-la no padrão do nó ("MATCH (node:OlderMovie)...").
+Por isso, eu vou apenas retornar o nó atualizado no exercício 8.11.
+> MATCH (filme:Movie {title: "Avatar"}) RETURN filme;
 
-• Exercise 8.13: Add properties to the person, Robin Wright.
+- Exercise 8.13: Add properties to the person, Robin Wright.
+Mais uma vez, uma operação sobre um nó que não existe. Mas a query seria algo assim:
+> MATCH (atriz:Person {name: "Robin Wright"})
+  SET atriz += {gender: "female"}
+  RETURN atriz;
 
-• Exercise 8.14: Retrieve an updated Person node.
+- Exercise 8.14: Retrieve an updated Person node.
+> MATCH (pessoa:Person)
+  WHERE exists(pessoa.gender)
+  RETURN pessoa;
 
-• Exercise 8.15: Remove a property from a Movie node.
+- Exercise 8.15: Remove a property from a Movie node.
+> MATCH (filme:Movie {title: "Avatar"})
+  SET filme += {runningTime: null, genres: null}
+  RETURN count(DISTINCT filme);
 
-• Exercise 8.16: Retrieve the node to confirm that the property has been removed.
+- Exercise 8.16: Retrieve the node to confirm that the property has been removed.
+> MATCH (filme:Movie {title: "Avatar"}) RETURN filme;
 
-• Exercise 8.17: Remove a property from a Person node.
+- Exercise 8.17: Remove a property from a Person node.
+> MATCH (clint:Person {name: "Clint Eastwood"})
+  REMOVE clint.born
+  RETURN count(clint);
 
-• Exercise 8.18: Retrieve the node to confirm that the property has been removed.
+- Exercise 8.18: Retrieve the node to confirm that the property has been removed.
+> MATCH (clint:Person {name: "Clint Eastwood"}) RETURN clint;
 
 -----
