@@ -237,3 +237,41 @@ Este exercício por acaso esperava que eu tivesse feito uma query **muito** espe
   RETURN diretor.name AS Diretor, idade AS Idade, filmes AS Dirigiu;
 
 -----
+
+• Exercise 8.1: Create a Movie node.
+
+• Exercise 8.2: Retrieve the newly-created node.
+
+• Exercise 8.3: Create a Person node.
+
+• Exercise 8.4: Retrieve the newly-created node.
+
+• Exercise 8.5: Add a label to a node.
+
+• Exercise 8.6: Retrieve the node using the new label.
+
+• Exercise 8.7: Add the Female label to selected nodes.
+
+• Exercise 8.8: Retrieve all Female nodes.
+
+• Exercise 8.9: Remove the Female label from the nodes that have this label.
+
+• Exercise 8.10: View the current schema of the graph.
+
+• Exercise 8.11: Add properties to a movie.
+
+• Exercise 8.12: Retrieve an OlderMovie node to confirm the label and properties.
+
+• Exercise 8.13: Add properties to the person, Robin Wright.
+
+• Exercise 8.14: Retrieve an updated Person node.
+
+• Exercise 8.15: Remove a property from a Movie node.
+
+• Exercise 8.16: Retrieve the node to confirm that the property has been removed.
+
+• Exercise 8.17: Remove a property from a Person node.
+
+• Exercise 8.18: Retrieve the node to confirm that the property has been removed.
+
+-----
