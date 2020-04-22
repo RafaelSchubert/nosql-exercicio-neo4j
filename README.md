@@ -319,3 +319,31 @@ Mais uma vez, uma operação sobre um nó que não existe. Mas a query seria alg
 > MATCH (clint:Person {name: "Clint Eastwood"}) RETURN clint;
 
 -----
+
+- Exercise 9.1: Create ACTED_IN relationships.
+
+- Exercise 9.2: Create DIRECTED relationships.
+
+- Exercise 9.3: Create a HELPED relationship.
+
+- Exercise 9.4: Query nodes and new relationships.
+
+- Exercise 9.5: Add properties to relationships.
+
+- Exercise 9.6: Add a property to the HELPED relationship.
+
+- Exercise 9.7: View the current list of property keys in the graph.
+
+- Exercise 9.8: View the current schema of the graph.
+
+- Exercise 9.9: Retrieve the names and roles for actors.
+
+- Exercise 9.10: Retrieve information about any specific relationships.
+
+- Exercise 9.11: Modify a property of a relationship.
+
+- Exercise 9.12: Remove a property from a relationship.
+
+- Exercise 9.13: Confirm that your modifications were made to the graph.
+
+-----
