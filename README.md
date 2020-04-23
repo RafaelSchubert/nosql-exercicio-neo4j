@@ -1,5 +1,5 @@
 # nosql-exercicio-neo4j
-ExercÃ­cios de Neo4j da disciplina de Bancos de Dados NÃ£o-Relacionais do curso de EspecializaÃ§Ã£o em Data Science, turma 2, pela FURB.
+Exercícios de Neo4j da disciplina de Bancos de Dados Não-Relacionais do curso de Especialização em Data Science, turma 2, pela FURB.
 
 -----
 
@@ -39,7 +39,7 @@ Nota: o material de consulta menciona como "CALL db.schema;". No entanto, isso m
 -----
 
 - Exercise 3.1: Display the schema of the database.
-Idem ao ExercÃ­cio 1.2:
+Idem ao Exercício 1.2:
 > CALL db.schema.visualization();
 
 - Exercise 3.2: Retrieve all people who wrote the movie Speed Racer.
@@ -61,7 +61,7 @@ Idem ao ExercÃ­cio 1.2:
   WHERE (filme:Movie)<-[:ACTED_IN]-(:Person {name: "Tom Cruise"})
   RETURN filme.title AS Filme;
 
-- Exercise 4.2: Retrieve all people that were born in the 70â€™s.
+- Exercise 4.2: Retrieve all people that were born in the 70’s.
 > MATCH (pessoa:Person)
   WHERE 1970 <= pessoa.born AND pessoa.born < 1980
   RETURN pessoa.name AS Nome, pessoa.born AS Nascimento;
@@ -118,7 +118,7 @@ Idem ao ExercÃ­cio 1.2:
   WHERE filme.released IN [1960, 1970, 1980, 1990, 2000]
   RETURN filme.title AS Filme, filme.released AS Lancamento;
 
-- Exercise 4.13: Retrieve the movies that have an actorâ€™s role that is the name of the movie.
+- Exercise 4.13: Retrieve the movies that have an actor’s role that is the name of the movie.
 > MATCH (filme:Movie)<-[atuacao:ACTED_IN]->(:Person)
   WHERE filme.title IN atuacao.roles
   RETURN filme;
@@ -156,11 +156,11 @@ Idem ao ExercÃ­cio 1.2:
 - Exercise 5.9: Retrieve nodes as lists and return data associated with the corresponding lists.
 > MATCH (filme:Movie)
   WHERE 1980 <= filme.released AND filme.released < 1990
-  RETURN count(*) AS `Filmes da DÃ©cada de 80`, collect(filme.title) AS Filmes;
+  RETURN count(*) AS `Filmes da Década de 80`, collect(filme.title) AS Filmes;
 
 - Exercise 5.10: Retrieve nodes and their relationships as lists.
 > MATCH (vertice)-[relacao]-(outro)
-  RETURN vertice AS VÃ©rtice, collect(type(relacao)) AS RelaÃ§Ãµes, collect(outro) AS Com;
+  RETURN vertice AS Vértice, collect(type(relacao)) AS Relações, collect(outro) AS Com;
 
 - Exercise 5.11: Retrieve the actors who have acted in exactly five movies.
 > MATCH (ator:Person)-[:ACTED_IN]->(filme:Movie)
@@ -186,7 +186,7 @@ Idem ao ExercÃ­cio 1.2:
   RETURN DISTINCT p.name, f.title;
 
 - Exercise 6.3: Modify the query to eliminate more duplication.
-Este exercÃ­cio por acaso esperava que eu tivesse feito uma query **muito** especÃ­fica no exercÃ­cio 6.1?
+Este exercício por acaso esperava que eu tivesse feito uma query **muito** específica no exercício 6.1?
 
 - Exercise 6.4: Sort results returned.
 > MATCH (p:Person)-[:DIRECTED|:PRODUCED]->(f:Movie)
@@ -219,7 +219,7 @@ Este exercÃ­cio por acaso esperava que eu tivesse feito uma query **muito** espe
 - Exercise 7.2: Collect a list.
 > MATCH (filme:Movie)
   WITH filme.released AS ano, collect(filme.title) AS filmes
-  RETURN ano AS Ano, filmes AS LanÃ§amentos
+  RETURN ano AS Ano, filmes AS Lançamentos
   ORDER BY Ano DESC;
 
 - Exercise 7.3: Unwind a list.
@@ -287,12 +287,12 @@ Este exercÃ­cio por acaso esperava que eu tivesse feito uma query **muito** espe
   RETURN filme;
 
 - Exercise 8.12: Retrieve an OlderMovie node to confirm the label and properties.
-A label "OlderMovie" nÃ£o foi incluÃ­da durante os exercÃ­cios, mas bastaria especificÃ¡-la no padrÃ£o do nÃ³ ("MATCH (node:OlderMovie)...").
-Por isso, eu vou apenas retornar o nÃ³ atualizado no exercÃ­cio 8.11.
+A label "OlderMovie" não foi incluída durante os exercícios, mas bastaria especificá-la no padrão do nó ("MATCH (node:OlderMovie)...").
+Por isso, eu vou apenas retornar o nó atualizado no exercício 8.11.
 > MATCH (filme:Movie {title: "Avatar"}) RETURN filme;
 
 - Exercise 8.13: Add properties to the person, Robin Wright.
-Mais uma vez, uma operaÃ§Ã£o sobre um nÃ³ que nÃ£o existe. Mas a query seria algo assim:
+Mais uma vez, uma operação sobre um nó que não existe. Mas a query seria algo assim:
 > MATCH (atriz:Person {name: "Robin Wright"})
   SET atriz += {gender: "female"}
   RETURN atriz;
@@ -323,7 +323,7 @@ Mais uma vez, uma operaÃ§Ã£o sobre um nÃ³ que nÃ£o existe. Mas a query seria alg
 - Exercise 9.1: Create ACTED_IN relationships.
 > MATCH (filme:Movie {title: "Avatar"})
   CREATE (sam:Person {name: "Sam Worthington", born: 1976})
-  CREATE (zoe:Person {name: "ZÃ¶e SaldaÃ±a", born: 1978})
+  CREATE (zoe:Person {name: "Zöe Saldaña", born: 1978})
   CREATE (sam)-[:ACTED_IN]->(filme),
          (zoe)-[:ACTED_IN]->(filme);
 
@@ -348,7 +348,7 @@ Mais uma vez, uma operaÃ§Ã£o sobre um nÃ³ que nÃ£o existe. Mas a query seria alg
 - Exercise 9.5: Add properties to relationships.
 > MATCH (ator:Person {name: "Sam Worthington"})-[atuacao:ACTED_IN]-(:Movie {title: "Avatar"})
   SET atuacao.roles = ["Jake Sulivan"];
-> MATCH (ator:Person {name: "ZÃ¶e SaldaÃ±a"})-[atuacao:ACTED_IN]-(:Movie {title: "Avatar"})
+> MATCH (ator:Person {name: "Zöe Saldaña"})-[atuacao:ACTED_IN]-(:Movie {title: "Avatar"})
   SET atuacao.roles = ["Neytiri"];
 
 - Exercise 9.6: Add a property to the HELPED relationship.
