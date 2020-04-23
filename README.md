@@ -399,15 +399,25 @@ Mais uma vez, uma operação sobre um nó que não existe. Mas a query seria algo as
 -----
 
 - Exercise 10.1: Delete a relationship.
+> MATCH (:Person {name: "Tom Hanks"})-[direcao:DIRECTED]->(:Movie) DELETE direcao;
 
 - Exercise 10.2: Confirm that the relationship has been deleted.
+> MATCH (:Person {name: "Tom Hanks"})-[direcao:DIRECTED]->(:Movie) RETURN direcao;
 
 - Exercise 10.3: Retrieve a movie and all of its relationships.
+> MATCH (a)-[r]-(filme:Movie {title: "Avatar"})\
+  RETURN filme.title AS Filme, type(r) AS Relação, a AS \`Com Quem\`\
+  ORDER BY filme.title;
 
 - Exercise 10.4: Try deleting a node without detaching its relationships.
+> MATCH (f:Movie {title: "Avatar"}) DELETE f;
 
 - Exercise 10.5: Delete a Movie node, along with its relationships.
+> MATCH (f:Movie {title: "Avatar"})-[r]-() DELETE r, f;
 
 - Exercise 10.6: Confirm that the Movie node has been deleted.
+> MATCH (a)-[r]-(filme:Movie {title: "Avatar"})\
+  RETURN filme.title AS Filme, type(r) AS Relação, a AS \`Com Quem\`\
+  ORDER BY filme.title;
 
 -----
