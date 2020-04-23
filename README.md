@@ -158,7 +158,7 @@ Idem ao Exercício 1.2:
 - Exercise 5.9: Retrieve nodes as lists and return data associated with the corresponding lists.
 > MATCH (filme:Movie)\
   WHERE 1980 <= filme.released AND filme.released < 1990\
-  RETURN count(*) AS ``Filmes da Década de 80``, collect(filme.title) AS Filmes;
+  RETURN count(*) AS \`Filmes da Década de 80\`, collect(filme.title) AS Filmes;
 
 - Exercise 5.10: Retrieve nodes and their relationships as lists.
 > MATCH (vertice)-[relacao]-(outro)\
@@ -216,7 +216,7 @@ Este exercício por acaso esperava que eu tivesse feito uma query **muito** espec
   WHERE NOT (ator)-[:ACTED_IN]->(:Movie {title: "The Matrix"})\
         AND (atorMatrix)-[:ACTED_IN]->(:Movie {title: "The Matrix"})\
   WITH filme, collect(DISTINCT atorMatrix.name) AS elencoMatrix, collect(DISTINCT ator.name) AS elenco\
-  RETURN filme.title AS Filme, elencoMatrix AS ``Elenco Matrix``, elenco AS Elenco\
+  RETURN filme.title AS Filme, elencoMatrix AS \`Elenco Matrix\`, elenco AS Elenco\
   ORDER BY Filme;
 
 - Exercise 7.2: Collect a list.
