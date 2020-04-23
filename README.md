@@ -7,7 +7,8 @@ Exercícios de Neo4j da disciplina de Bancos de Dados Não-Relacionais do curso de
 > MATCH (vertice) RETURN vertice;
 
 - Exercise 1.2: Examine the data model for the graph.
-> CALL db.schema.visualization();\
+> CALL db.schema.visualization();
+
 Nota: o material de consulta menciona como "CALL db.schema;". No entanto, isso mudou.
 
 - Exercise 1.3: Retrieve all Person nodes.
@@ -38,7 +39,8 @@ Nota: o material de consulta menciona como "CALL db.schema;". No entanto, isso m
 
 -----
 
-- Exercise 3.1: Display the schema of the database.\
+- Exercise 3.1: Display the schema of the database.
+
 Idem ao Exercício 1.2:
 > CALL db.schema.visualization();
 
@@ -185,8 +187,9 @@ Idem ao Exercício 1.2:
 > MATCH (p:Person)-[:DIRECTED|:PRODUCED]->(f:Movie)\
   RETURN DISTINCT p.name, f.title;
 
-- Exercise 6.3: Modify the query to eliminate more duplication.\
-Este exercício por acaso esperava que eu tivesse feito uma query **muito** específica no exercício 6.1?\
+- Exercise 6.3: Modify the query to eliminate more duplication.
+
+Este exercício por acaso esperava que eu tivesse feito uma query **muito** específica no exercício 6.1?
 
 - Exercise 6.4: Sort results returned.
 > MATCH (p:Person)-[:DIRECTED|:PRODUCED]->(f:Movie)\
@@ -286,12 +289,14 @@ Este exercício por acaso esperava que eu tivesse feito uma query **muito** espec
   SET filme += {runningTime: 60 * 2 + 42, genres: ["Sci fi", "Action"]}\
   RETURN filme;
 
-- Exercise 8.12: Retrieve an OlderMovie node to confirm the label and properties.\
+- Exercise 8.12: Retrieve an OlderMovie node to confirm the label and properties.
+
 A label "OlderMovie" não foi incluída durante os exercícios, mas bastaria especificá-la no padrão do nó ("MATCH (node:OlderMovie)...").\
 Por isso, eu vou apenas retornar o nó atualizado no exercício 8.11.
 > MATCH (filme:Movie {title: "Avatar"}) RETURN filme;
 
-- Exercise 8.13: Add properties to the person, Robin Wright.\
+- Exercise 8.13: Add properties to the person, Robin Wright.
+
 Mais uma vez, uma operação sobre um nó que não existe. Mas a query seria algo assim:
 > MATCH (atriz:Person {name: "Robin Wright"})\
   SET atriz += {gender: "female"}\
