@@ -406,8 +406,7 @@ Mais uma vez, uma operação sobre um nó que não existe. Mas a query seria algo as
 
 - Exercise 10.3: Retrieve a movie and all of its relationships.
 > MATCH (a)-[r]-(filme:Movie {title: "Avatar"})\
-  RETURN filme.title AS Filme, type(r) AS Relação, a AS \`Com Quem\`\
-  ORDER BY filme.title;
+  RETURN filme.title AS Filme, type(r) AS Relação, a AS \`Com Quem\`;
 
 - Exercise 10.4: Try deleting a node without detaching its relationships.
 > MATCH (f:Movie {title: "Avatar"}) DELETE f;
@@ -417,7 +416,6 @@ Mais uma vez, uma operação sobre um nó que não existe. Mas a query seria algo as
 
 - Exercise 10.6: Confirm that the Movie node has been deleted.
 > MATCH (a)-[r]-(filme:Movie {title: "Avatar"})\
-  RETURN filme.title AS Filme, type(r) AS Relação, a AS \`Com Quem\`\
-  ORDER BY filme.title;
+  RETURN filme.title AS Filme, type(r) AS Relação, a AS \`Com Quem\`;
 
 -----
