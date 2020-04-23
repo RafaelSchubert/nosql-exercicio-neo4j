@@ -321,29 +321,74 @@ Mais uma vez, uma operação sobre um nó que não existe. Mas a query seria alg
 -----
 
 - Exercise 9.1: Create ACTED_IN relationships.
+> MATCH (filme:Movie {title: "Avatar"})
+  CREATE (sam:Person {name: "Sam Worthington", born: 1976})
+  CREATE (zoe:Person {name: "Zöe Saldaña", born: 1978})
+  CREATE (sam)-[:ACTED_IN]->(filme),
+         (zoe)-[:ACTED_IN]->(filme);
 
 - Exercise 9.2: Create DIRECTED relationships.
+> MATCH (diretor:Person {name: "James Cameron"})
+  WITH diretor
+  MATCH (filme:Movie {title: "Avatar"})
+  CREATE (diretor)-[:DIRECTED]->(filme);
 
 - Exercise 9.3: Create a HELPED relationship.
+> CREATE (horner:Person {name: "James Horner", born: 1953})
+  CREATE (fiore:Person {name: "Mauro Fiore", born: 1964})
+  WITH horner, fiore
+  MATCH (filme:Movie {title: "Avatar"})
+  CREATE (horner)-[:HELPED]->(filme)
+  CREATE (fiore)-[:HELPED]->(filme);
 
 - Exercise 9.4: Query nodes and new relationships.
+> MATCH (alguem:Person)-[relacao:ACTED_IN|:DIRECTED|:HELPED]->(:Movie {title: "Avatar"})
+  RETURN alguem.name AS Pessoa, type(relacao);
 
 - Exercise 9.5: Add properties to relationships.
+> MATCH (ator:Person {name: "Sam Worthington"})-[atuacao:ACTED_IN]-(:Movie {title: "Avatar"})
+  SET atuacao.roles = ["Jake Sulivan"];
+> MATCH (ator:Person {name: "Zöe Saldaña"})-[atuacao:ACTED_IN]-(:Movie {title: "Avatar"})
+  SET atuacao.roles = ["Neytiri"];
 
 - Exercise 9.6: Add a property to the HELPED relationship.
+> MATCH (ajudante:Person {name: "James Horner"})-[relacao:HELPED]->(:Movie {title: "Avatar"})
+  SET relacao.function = "composer";
+> MATCH (ajudante:Person {name: "Mauro Fiore"})-[relacao:HELPED]->(:Movie {title: "Avatar"})
+  SET relacao.function = "cinematography";
 
 - Exercise 9.7: View the current list of property keys in the graph.
+> CALL db.propertyKeys;
 
 - Exercise 9.8: View the current schema of the graph.
+> CALL db.schema.visualization;
 
 - Exercise 9.9: Retrieve the names and roles for actors.
+> MATCH (ator:Person)-[atuacao:ACTED_IN]->(filme:Movie)
+  UNWIND atuacao.roles AS papel
+  RETURN ator.name AS Ator, papel AS Papel, filme.title AS Filme
+  ORDER BY Ator, Filme, Papel;
 
 - Exercise 9.10: Retrieve information about any specific relationships.
+> MATCH (revisor:Person)-[revisao:REVIEWED]->(filme:Movie)
+  RETURN filme.title AS Filme, revisao.rating AS Nota, revisor.name AS Revisor, revisao.summary AS Resumo
+  ORDER BY Filme, Nota;
 
 - Exercise 9.11: Modify a property of a relationship.
+> MATCH (:Person {name: "Jessica Thompson"})-[revisao:REVIEWED]->(:Movie)
+  WHERE exists(revisao.rating) AND revisao.rating < 50
+  SET revisao.rating = 50;
 
 - Exercise 9.12: Remove a property from a relationship.
+> MATCH (:Person)-[revisao:REVIEWED]-(:Movie)
+  WHERE revisao.rating = 100
+  REMOVE revisao.rating;
 
 - Exercise 9.13: Confirm that your modifications were made to the graph.
+> MATCH (:Person {name: "Jessica Thompson"})-[revisao:REVIEWED]->(:Movie)
+  RETURN revisao;
+> MATCH (:Person)-[revisao:REVIEWED]-(:Movie)
+  WHERE NOT exists(revisao.rating)
+  RETURN revisao;
 
 -----
