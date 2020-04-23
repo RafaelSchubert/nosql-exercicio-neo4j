@@ -397,3 +397,17 @@ Mais uma vez, uma operação sobre um nó que não existe. Mas a query seria algo as
   RETURN revisao;
 
 -----
+
+- Exercise 10.1: Delete a relationship.
+
+- Exercise 10.2: Confirm that the relationship has been deleted.
+
+- Exercise 10.3: Retrieve a movie and all of its relationships.
+
+- Exercise 10.4: Try deleting a node without detaching its relationships.
+
+- Exercise 10.5: Delete a Movie node, along with its relationships.
+
+- Exercise 10.6: Confirm that the Movie node has been deleted.
+
+-----
